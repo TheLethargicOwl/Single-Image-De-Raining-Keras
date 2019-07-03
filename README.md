@@ -16,7 +16,7 @@ It is kept in mind that the de-rained result should be indistinguishable from it
 	  year={2017}
 	} 
   
-  <img src="image/example1.png" width="400px" height="200px"/><img src="image/example2.png" width="400px" height="200px"/>
+  <img src="image/example1.jpg" width="400px" height="200px"/><img src="image/example2.jpg" width="400px" height="200px"/>
   
   
   *Make sure to change scipy version to 1.1.0
