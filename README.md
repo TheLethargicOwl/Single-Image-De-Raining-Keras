@@ -16,7 +16,7 @@ It is kept in mind that the de-rained result should be indistinguishable from it
 	  year={2017}
 	} 
   The Model Architecture
-  <img src="image/Network.png" width="800px" height="200px"/>
+  <img src="image/Network.png" width="1000px" height="200px"/>
   
   <img src="image/example1.png" width="400px" height="200px"/><img src="image/example2.png" width="400px" height="200px"/>
   
