@@ -5,9 +5,9 @@ Implemented Image De-raining Using a Conditional Generative Adversarial Network 
 
 Severe weather conditions such as rain and snow adversely affect the visual quality of images captured under such conditions thus rendering them useless for further usage and sharing. In addition, such degraded images drastically affect performance of vision systems. Hence, it is important to solve the problem of single image de-raining/de-snowing. 
 
-In this project I implemented the Paper using Keras.
+In this project I implemented the Paper using  Keras.
 
-It is kept in mind that the de-rained result should be indistinguishable from its corresponding clear image. 
+It is kept in mind that the de-rained result should be indistinguishable from its corresponding clear image . 
 
 	@article{zhang2017image,		
 	  title={Image De-raining Using a Conditional Generative Adversarial Network},
@@ -23,7 +23,7 @@ It is kept in mind that the de-rained result should be indistinguishable from it
   
   Download the dataset from (https://drive.google.com/open?id=0Bw2e6Q0nQQvGbi1xV1Yxd09rY2s) 
  
- ##Acknowledgment## 
+ ##Acknowledgments## 
  
  Code borrows heavily  from [[Pix2Pix Peceptual Loss](https://github.com/ssajj1212/Pix2Pix-keras)]
  and [[Pix2Pix](https://github.com/hanwen0529/GAN-pix2pix-Keras)]. Thanks for the sharing.
