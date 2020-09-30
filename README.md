@@ -7,7 +7,7 @@ Severe weather conditions such as rain and snow adversely affect the visual qual
 
 In this project I implemented the Paper using  Keras.
 
-It is kept in mind that the de-rained result should be indistinguishable from its corresponding clear image. 
+It is kept in mind that the de-rained result should be indistinguishable from its corresponding clear image . 
 
 	@article{zhang2017image,		
 	  title={Image De-raining Using a Conditional Generative Adversarial Network},
