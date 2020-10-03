@@ -21,9 +21,9 @@ It is kept in mind that the de-rained result should be indistinguishable from it
   
   *Make sure to change scipy version to 1.1.0
   
-  Download the dataset from (https://drive.google.com/open?id=0Bw2e6Q0nQQvGbi1xV1Yxd09rY2s) 
- 
- ##Acknowledgments## 
+  Download the dataset from the given link -  (https://drive.google.com/open?id=0Bw2e6Q0nQQvGbi1xV1Yxd09rY2s) 
+  
+ ## Acknowledgments
  
  Code  borrows heavily  from [[Pix2Pix Peceptual Loss](https://github.com/ssajj1212/Pix2Pix-keras)]
  and [[Pix2Pix](https://github.com/hanwen0529/GAN-pix2pix-Keras)]. Thanks for the sharing.
