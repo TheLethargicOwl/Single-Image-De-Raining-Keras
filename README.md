@@ -7,6 +7,15 @@ Severe weather conditions such as rain and snow adversely affect the visual qual
 
 In this project I  implemented the Paper using  Keras.
 
+## Steps to run source code
+1. Clone the repository
+2. Create conda environment using deraining-keras.yml file provided with repo
+3. Download the dataset from the given link -  (https://drive.google.com/open?id=0Bw2e6Q0nQQvGbi1xV1Yxd09rY2s) 
+4. Place the dataset inside dataset folder
+5. If you have your own custom dataset then run make_my_dataset.py file with your own paths to images to make your data in the format this code uses.
+
+Note: this code is tested on the environment file provided and it uses CUDA 10.2
+
 It is kept in mind that the de-rained result should be indistinguishable from its corresponding clear image . 
 
 	@article{zhang2017image,		

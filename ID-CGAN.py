@@ -2,35 +2,29 @@ from __future__ import print_function, division
 import scipy
 
 #Import Require Libraries
-
 import matplotlib.pyplot as plt
-import cv2
-import pandas
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 from keras.applications.vgg16 import VGG16
-from keras.models import Sequential
-from keras.layers import Dense,Dropout
+from keras.layers import Dropout
 from keras.layers import LeakyReLU
-from keras.layers import Reshape
 from keras.layers.core import Activation
 from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import UpSampling2D
 from keras.layers.convolutional import Conv2D, MaxPooling2D,Conv2DTranspose
-from keras.layers.core import Flatten
-from keras.optimizers import RMSprop,Adam,SGD
+from keras.optimizers import Adam,SGD
 import numpy as np
-import keras
-from keras.layers import Input, Dense
-from keras.models import Model, Sequential
+from keras.layers import Input
+from keras.models import Model
 from keras.layers import *
-from keras.models import model_from_json
 import datetime
 import matplotlib.pyplot as plt
-import sys
 from data_loader import DataLoader
 import numpy as np
 import os
 import scipy.misc
 from glob import glob
+from keras import backend as K
 
 #Create a de raining class
 class IDGAN():
@@ -214,7 +208,7 @@ class IDGAN():
       loss_block3.trainable = False
       loss_block2 = Model(inputs=vgg.input, outputs=vgg.get_layer('block2_conv2').output)
       loss_block2.trainable = False
-      loss_block1 = Model(input=vgg.input, outputs = vgg.get_layer('block1_conv2').output)
+      loss_block1 = Model(vgg.input, outputs = vgg.get_layer('block1_conv2').output)
       loss_block1.trainable = False
       return K.mean(K.square(loss_block1(img_true) - loss_block1(img_generated))) + 2*K.mean(K.square(loss_block2(img_true) - loss_block2(img_generated))) + 5*K.mean(K.square(loss_block3(img_true) - loss_block3(img_generated)))
     
@@ -272,9 +266,9 @@ class IDGAN():
     with open("./saved_models/dis_model.json", "w") as json_file:
         json_file.write(dis_model_json)	
     
-    self.combined.save_weights("./saved_models/com_model.h5")
     self.generator.save_weights("./saved_models/gen_model.h5")
     self.discriminator.save_weights("./saved_models/dis_model.h5")
+    self.CGAN_model.save_weights("./saved_models/com_model.h5")
     print("Model saved")
   
   def sample_images(self, epoch, batch_i):
@@ -308,7 +302,7 @@ class IDGAN():
 #Training
 gan=IDGAN()
 ## Train the model
-gan.train(epochs=150, batch_size=1, sample_interval=25)
+gan.train(epochs=50, batch_size=4, sample_interval=25)
 
 #Testing
 ## use the trained model to generate data
@@ -317,12 +311,19 @@ test_model.load_weights("./saved_models/gen_model.h5")
 path = glob("./dataset/rain/test_nature/*")
 num = 1
 for img in path:
-    img_B = scipy.misc.imread(img, mode='RGB').astype(np.float)
-    m,n,d = img_B.shape
-    img_show = np.zeros((m,2*n,
+    img_full = scipy.misc.imread(img, mode='RGB').astype(np.float)
+    m,n,d = img_full.shape
+    h, w, _ = img_full.shape
+    _w = int(w/2)
+    img_A, img_B = img_full[:, :_w, :], img_full[:, _w:, :]
+    img_A = scipy.misc.imresize(img_A, (256,256))
+    img_B = scipy.misc.imresize(img_B, (256,256))
+    img_show = np.zeros((256, 2*256, d))
     img_b = np.array([img_B])/127.5 - 1
+    print(f"predicting {num}")
     fake_A = 0.5* (test_model.predict(img_b))[0]+0.5
-    img_show[:,:n,:] = img_B/255
-    img_show[:,n:2*n,:] = fake_A
-    scipy.misc.imsave("./images/rain/test_nature/%d.jpg" % num,img_show)
+    img_show[:,:256,:] = img_B/255
+    img_show[:,256:2*256,:] = fake_A
+    scipy.misc.imsave("./images/rain/test_nature/%d.jpg" % num, img_show)
     num = num + 1 
+
